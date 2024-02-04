@@ -1,42 +1,59 @@
 import logo from './logo.svg';
 import './App.css';
 
-//Variables
-let questionIndex = 0;
-
 function Button1_1() {
-  questionIndex++;
 
   return (
-    <button onClick={() => alert(`Button1_1\nQuestion Index: ${questionIndex}`)}>Button1_1</button>
+    <button onClick={() => {
+      increaseQuestionIndex();
+      CurrentButtons.forceUpdateHandler();
+      console.log("button 1 1 pressed: questionIndex: " + questionIndex);
+    }
+  }>Button1_1</button>
   )
 }
 
 function Button1_2() {
-  questionIndex++;
-  
+
   return (
-    <button onClick={() => alert(`Button1_2\nQuestion Index: ${questionIndex}`)}>Button1_2</button>
+    <button onClick={() => {
+      increaseQuestionIndex();
+      CurrentButtons.forceUpdateHandler();
+      console.log("button 1 2 pressed: questionIndex: " + questionIndex);
+    }
+  }>Button1_2</button>
   )
 }
 
 function Button2_1() {
-  questionIndex++;
-  
-  return (
-    <button onClick={() => alert(`Button2_1\nQuestion Index: ${questionIndex}`)}>Button2_1</button>
+
+  return ( 
+    <button onClick={() => {
+      increaseQuestionIndex();
+      CurrentButtons.forceUpdateHandler();
+      console.log("button 2 1 pressed: questionIndex: " + questionIndex);
+    }
+  }>Button2_1</button>
   )
 }
 
 function Button2_2() {
-  questionIndex++;
-  
+
   return (
-    <button onClick={() => alert(`Button2_2\nQuestion Index: ${questionIndex}`)}>Button2_2</button>
+    <button onClick={() => {
+      increaseQuestionIndex();
+      CurrentButtons.forceUpdateHandler();
+      console.log("button 2 2 pressed: questionIndex: " + questionIndex);
+    }
+  }>Button2_2</button>
   )
 }
 
 function CurrentButtons({questionIndex}) {
+  forceUpdateHandler = () => {
+    this.forceUpdate();
+  };
+
   switch (questionIndex) {
   
     case 0: 
@@ -50,7 +67,7 @@ function CurrentButtons({questionIndex}) {
             <Button1_2 />
           </div>
         )
-        break;
+        //break;
       }
 
     case 1:
@@ -60,30 +77,38 @@ function CurrentButtons({questionIndex}) {
             <p>
               Here HAYs QEUBSIN 2 ahhhh!
             </p>
-            <Button1_1 />
-            <Button1_2 />
+            <Button2_1 />
+            <Button2_2 />
           </div>
         )
-        break;
+        //break;
       }
   }
 }
 
-//function that returns the questionindex of APp(): 
-// function QuestionIndex() {
-//   return (
-//     <p>
-//       {questionIndex}
-//     </p>
-//   )
-// }
+//function that returns the integer value of questionIndex
+function getQuestionIndex() {
+  return questionIndex;
+}
+
+function increaseQuestionIndex() {
+  questionIndex++;
+  console.log("questionIndex increased " + questionIndex);
+}
+
+function decreaseQuestionIndex() {
+  questionIndex--;
+  console.log("questionIndex decreased " + questionIndex);
+}
 
 
 function App() {
   return (
-    //how to comment inside div: 
     <div className="App">
       <header className="App-header">
+        //Variables
+        let questionIndex = 0;
+        
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           hola mundo
